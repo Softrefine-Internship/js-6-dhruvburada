@@ -2,10 +2,7 @@
 
 function getAllData(urls) {
   return urls.map((url) => {
-    return new Promise((resolve, reject) => {
-      const res = fetch(url).then((res) => res.json());
-      resolve(res);
-    });
+    return fetch(url).then((res) => res.json());
   });
 }
 

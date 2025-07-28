@@ -1,16 +1,18 @@
 // Write a JavaScript function that fetches data from an API and cancels the request if it takes longer than a specified time.
 
-function fetchData(url, timeout) {
-  return new Promise((res, rej) => {
-    let response = fetch(url).then((res) => res.json());
-    res(response);
-  });
+function fetchData(url) {
+  return fetch(url).then((res) => res.json());
 }
 
 function timeout(ms) {
-  return new Promise((res, rej) => setTimeout(rej(`Time out ${ms} ms`)));
+  return new Promise((res, rej) =>
+    setTimeout(() => rej(`Time out ${ms} ms`), ms)
+  );
 }
 
-Promise.race([fetchData(), timeout(2000)])
+Promise.race([
+  fetchData("https://fake-json-api.mock.beeceptor.com/users"),
+  timeout(1000),
+])
   .then((data) => console.log(data))
   .catch((err) => console.log(err));

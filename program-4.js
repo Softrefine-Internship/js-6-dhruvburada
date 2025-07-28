@@ -31,3 +31,14 @@ getToken().then((token) =>
     fetchUser(userid).then((data) => console.log(data))
   )
 );
+
+///Async Await Version
+
+// async function processAllData() {
+//   let token = await getToken();
+//   let userid = await VerifyToken(token);
+//   let user = await fetchUser(userid);
+//   console.log(user);
+// }
+
+// processAllData();
