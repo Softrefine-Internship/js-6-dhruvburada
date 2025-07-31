@@ -13,12 +13,14 @@ function fetchData(url, attemps) {
             .then(resolve)
             .catch(reject);
         });
+    } else {
+      throw new Error("No more attempts left");
     }
   });
 }
 
-fetchData("https://fake-json-api.mock.beeceptor.com/users", 2).then((data) =>
-  console.log(data)
-);
+fetchData("https://fake-json-api.mock.beeceptor.com/users", 2)
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err));
 
-// fetchData("https://", 2).then((data) => console.log(data)); //fails to fetch
+// fetchData("https://", 0).then((data) => console.log(data)); //fails to fetch
